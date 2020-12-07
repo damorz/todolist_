@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const taskController = require('../controllers/taskController');
 
-router.get("/tasks", taskController.list_all_tasks);
+router.get("/tasks", taskController.list_today_tasks);
 
 router.get("/todotasks", taskController.list_todo_tasks);
 router.get("/doingtasks", taskController.list_doing_tasks);

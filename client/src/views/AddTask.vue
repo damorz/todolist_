@@ -82,7 +82,7 @@ export default {
               })
               .then((result) => {
                 if(result.isConfirmed) {
-                  this.$router.push({name: "Home"});
+                  this.$router.push({name: "TaskManage"});
                 }
               })
             })

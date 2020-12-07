@@ -14,6 +14,11 @@ const routes = [
     component: () => import("../views/AddTask.vue"),
   },
   {
+    path: "/taskmanage",
+    name: "TaskManage",
+    component: () => import("../views/TaskManage.vue"),
+  },
+  {
     path: "*",
     component: () => import("../views/Error.vue"),
   }

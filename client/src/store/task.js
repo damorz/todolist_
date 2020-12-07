@@ -43,6 +43,19 @@ export default new Vuex.Store({
       console.log("GET DONE LIST: status",res3.status);
       console.log("GET DONE LIST: data", res3.data);
     },
+    async setTodayTask(context, day) {
+      const preDay = new Date(day)
+      const nextDay = new Date(preDay.setDate(preDay.getDate()+1));
+      const data = {
+        day: day,
+        nextDay: nextDay
+      }
+      const res = await axios.get(`${BASE_API_URL}/tasks`, {params: data});
+
+      context.commit("SET_TASK_LIST", res.data);
+      console.log("GET TASK LIST: status",res.status);
+      console.log("GET TASK LIST: data", res.data);
+    },
     async createTask(context, data) {
       const response = await axios.post(`${BASE_API_URL}/createtask`, data);
       console.log("POST NEW TASK: status", response.status);

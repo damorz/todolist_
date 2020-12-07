@@ -15,6 +15,10 @@
       <i class="fas fa-calendar-plus"></i>
       Create new task
     </div>
+    <div @click="changeRoute('TaskManage')">
+      <i class="fas fa-tasks"></i>
+      Task Management
+    </div>
 </div>
 </template>
 
