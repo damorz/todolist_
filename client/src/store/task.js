@@ -9,9 +9,13 @@ export default new Vuex.Store({
     taskList: [],
     todoList: [],
     doingList: [],
-    doneList: []
+    doneList: [],
+    dateSelected: ""
   },
   mutations: {
+    SET_DATE_SELECTED(state, date) {
+      state.dateSelected = date;
+    },
     SET_TASK_LIST(state, data) {
       state.taskList = data;
     },
@@ -26,6 +30,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    setDateSelected(context, date) {
+      context.commit("SET_DATE_SELECTED", date);
+    },
     async setTaskList(context) {
       const res1 = await axios.get(`${BASE_API_URL}/todotasks`);
       const res2 = await axios.get(`${BASE_API_URL}/doingtasks`);
@@ -84,6 +91,7 @@ export default new Vuex.Store({
     }
   },
   getters :{
+    getDateSelected: (state) => state.dateSelected,
     getTaskList: (state) => state.taskList,
     getTodoList: (state) => state.todoList,
     getDoingList: (state) => state.doingList,

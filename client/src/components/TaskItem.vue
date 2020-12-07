@@ -71,7 +71,7 @@
             Due Date: <span :class="lateCheck">{{ dueDate }}</span>
           </p>
         </blockquote>
-        <div class="dropdown">
+        <div v-if="!isHome" class="dropdown">
           <div 
             id="dropdownStatus" 
             data-toggle="dropdown" 
@@ -122,6 +122,9 @@ export default {
   },
 
   computed: {
+    isHome() {
+      return this.$route.name === "Home";
+    },
     statusClass() {
       if(this.taskItem.status === "TODO") {
         return "status-todo";
@@ -173,6 +176,9 @@ export default {
         if(response.status === 200) {
           console.log("CHANGE OK");
           this.$store.dispatch("setTaskList");
+          if(this.isHome) {
+            this.$router.go({name: "Home"})
+          }
         }
         else {
           this.$swal({
@@ -209,6 +215,9 @@ export default {
           });
           this.editing = false;
           this.$store.dispatch("setTaskList");
+          if(this.isHome) {
+            this.$router.go({name: "Home"})
+          }
         }
         else {
           this.$swal({
@@ -250,6 +259,9 @@ export default {
               confirmButtonColor: " #f5b342",
             }).then(() => {
               this.$store.dispatch("setTaskList");
+              if(this.isHome) {
+                this.$router.go({name: "Home"})
+              }
             });
           } else {
             this.$swal({

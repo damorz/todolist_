@@ -47,11 +47,13 @@ export default {
   },
   watch: {
     date() {
+      this.$store.dispatch("setDateSelected", day);
       const day = moment(this.date).format();
       this.$store.dispatch("setTodayTask", day);
     }
   },
   mounted() {
+    this.$store.dispatch("setDateSelected", day);
     const day = moment(this.date).format();
     this.$store.dispatch("setTodayTask", day);
     console.log("Home Mounted.");
